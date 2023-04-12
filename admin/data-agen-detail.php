@@ -80,7 +80,7 @@ if ($_SESSION['level'] == "") {
                                 <h4 class="mt-0 header-title"></h4>
                                 <p class="text-muted m-b-30">
                                 </p>
-                                <table style="width: 100%;font-size:20px;">
+                                <table style="width: 100%;font-size:16px;">
                                     <tbody>
                                         <?php
                                         $no = 1;
@@ -133,61 +133,63 @@ if ($_SESSION['level'] == "") {
                                         <hr>
                                     </div>
                                 </div>
-                                <table class="table table-bordered dt-responsive nowrap mt-2" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr class="align-middle text-center bg-primary text-dark">
-                                            <th width="5">No</th>
-                                            <th>Tanggal</th>
-                                            <th width="200">Netto</th>
-                                            <th width="300">Komoditas</th>
-                                            <th width="200">Panjar TBS/BRD</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.id='$_GET[x]' and b.jenis='$_GET[kategori]'");
-                                        while ($data = mysqli_fetch_array($query)) :
-                                            $nm_suplayer = $data['nm_suplayer'];
-                                            $jenis = $data['jenis'];
-                                        ?>
-                                            <tr class="align-middle">
-                                                <td class="text-center"><?= $no++; ?></td>
-                                                <td><b><?= tgl_indo($data['tanggal']); ?></b></td>
-                                                <td class="text-center"><?= rp($data['tbg_bersih']); ?> Kg</td>
-                                                <td class="text-center"><?= $data['jenis2']; ?></td>
-                                                <td class="text-center">Rp.<?= rp($data['ptg_hutang']); ?>,-</td>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered dt-responsive nowrap mt-2" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr class="align-middle text-center bg-primary text-dark">
+                                                <th width="5">No</th>
+                                                <th>Tanggal</th>
+                                                <th width="200">Netto</th>
+                                                <th width="300">Komoditas</th>
+                                                <th width="200">Panjar TBS/BRD</th>
                                             </tr>
-                                            <?php include('modal-update-suplayer.php'); ?>
-                                            <script>
-                                                $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
-                                                    e.preventDefault();
-                                                    const href = $(this).attr('href');
-                                                    Swal.fire({
-                                                        title: 'Perhatian !',
-                                                        text: "Apakah anda yakin ingin suplayer <?= $data['nm_suplayer'] ?>?",
-                                                        icon: 'warning',
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: '#d33',
-                                                        cancelButtonColor: '#3085d6',
-                                                        confirmButtonText: 'Hapus',
-                                                        cancelButtonText: 'Batal'
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.location.href = href;
-                                                        }
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            $query = mysqli_query($koneksi, "select * from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.id='$_GET[x]' and b.jenis='$_GET[kategori]'");
+                                            while ($data = mysqli_fetch_array($query)) :
+                                                $nm_suplayer = $data['nm_suplayer'];
+                                                $jenis = $data['jenis'];
+                                            ?>
+                                                <tr class="align-middle">
+                                                    <td class="text-center"><?= $no++; ?></td>
+                                                    <td><b><?= tgl_indo($data['tanggal']); ?></b></td>
+                                                    <td class="text-center"><?= rp($data['tbg_bersih']); ?> Kg</td>
+                                                    <td class="text-center"><?= $data['jenis2']; ?></td>
+                                                    <td class="text-center">Rp.<?= rp($data['ptg_hutang']); ?>,-</td>
+                                                </tr>
+                                                <?php include('modal-update-suplayer.php'); ?>
+                                                <script>
+                                                    $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
+                                                        e.preventDefault();
+                                                        const href = $(this).attr('href');
+                                                        Swal.fire({
+                                                            title: 'Perhatian !',
+                                                            text: "Apakah anda yakin ingin suplayer <?= $data['nm_suplayer'] ?>?",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#d33',
+                                                            cancelButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Hapus',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.location.href = href;
+                                                            }
+                                                        })
                                                     })
-                                                })
-                                            </script>
-                                        <?php endwhile; ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr class="bg-primary text-dark">
-                                            <td colspan="4" style="text-align: end;"><b>Jumlah</b></td>
-                                            <td class="text-center"><b>Rp.<?= rp($sum_ptg_hutang); ?>,-</b></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                                </script>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="bg-primary text-dark">
+                                                <td colspan="4" style="text-align: end;"><b>Jumlah</b></td>
+                                                <td class="text-center"><b>Rp.<?= rp($sum_ptg_hutang); ?>,-</b></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
 
                             </div>
                         </div>
