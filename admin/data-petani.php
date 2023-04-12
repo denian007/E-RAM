@@ -106,7 +106,7 @@ if ($_SESSION['level'] == "") {
                                         ?>
                                             <tr class="align-middle">
                                                 <td class="text-center"><?= $no++; ?></td>
-                                                <td><a class="text-primary" href=""><b><?= $data['nm_suplayer']; ?></b></a></td>
+                                                <td><a class="text-primary" href="data-agen-detail.php?x=<?= $data['id'] ?>&kategori=<?= $data['jenis'] ?>"><b><?= $data['nm_suplayer']; ?></b></a></td>
                                                 <td class="text-center"><?= $data['hp']; ?></td>
                                                 <td><?= $data['alamat']; ?></td>
                                                 <td class="text-center">Rp.<?= rp($data['panjar_tbs']); ?>,-</td>

@@ -80,49 +80,49 @@ if ($_SESSION['level'] == "") {
                                 <form action="f-pengaturan-driver.php" method="POST">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <table style="width: 100%;">
+                                            <table style="width: 100%;" class="table-stripped table-hover table-success p-5">
                                                 <tbody>
                                                     <?php
                                                     $query = mysqli_query($koneksi, "select * from ta_driver where id='1'");
                                                     while ($data = mysqli_fetch_array($query)) :
                                                     ?>
                                                         <tr style="display: none;">
-                                                            <td width="130">ID</td>
+                                                            <td width="130"><b> ID</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="id" value="<?= $data['id'] ?>" readonly>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="130">Nama</td>
+                                                            <td width="130"><b> Nama</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="nm_driver" value="<?= $data['nm_driver'] ?>">
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="130">Kontak/Hp</td>
+                                                            <td width="130"><b> Kontak/Hp</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="hp" value="<?= $data['hp'] ?>">
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="130">Alamat</td>
+                                                            <td width="130"><b> Alamat</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="alamat" value="<?= $data['alamat'] ?>">
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="130">Nama Kendaraan</td>
+                                                            <td width="130"><b> Nama Kendaraan</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="nm_mobil" value="<?= $data['nm_mobil'] ?>">
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="130">Nomor Polisi</td>
+                                                            <td width="130"><b> Nomor Polisi</b></td>
                                                             <td width="1">:</td>
                                                             <td>
                                                                 <input type="text" class="form-control" name="plat" value="<?= $data['plat'] ?>">

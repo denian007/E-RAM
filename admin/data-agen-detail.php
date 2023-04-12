@@ -60,7 +60,7 @@ if ($_SESSION['level'] == "") {
                             </div>
                         </div>
 
-                        <h4 class="page-title">Data Suplayer Agen</h4>
+                        <h4 class="page-title">Data Suplayer Detail</h4>
 
                     </div>
                 </div>
@@ -80,40 +80,83 @@ if ($_SESSION['level'] == "") {
                                 <h4 class="mt-0 header-title"></h4>
                                 <p class="text-muted m-b-30">
                                 </p>
-                                <div class="row mb-4">
+                                <table style="width: 100%;font-size:20px;">
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        $query = mysqli_query($koneksi, "select sum(b.ptg_hutang) as sum_ptg_hutang from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.id='$_GET[x]' and b.jenis='$_GET[kategori]'");
+                                        while ($data = mysqli_fetch_array($query)) :
+                                            $sum_ptg_hutang = $data['sum_ptg_hutang'];
+                                        ?>
+                                        <?php endwhile; ?>
+                                        <?php
+                                        $query = mysqli_query($koneksi, "select * from ta_suplayer where id='$_GET[x]'");
+                                        while ($data = mysqli_fetch_array($query)) :
+                                        ?>
+                                            <tr>
+                                                <td width="200">Nama</td>
+                                                <td width="1">:</td>
+                                                <td><b> <?= $data['nm_suplayer']; ?></b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kategori</td>
+                                                <td>:</td>
+                                                <td><b> <?= $data['jenis']; ?></b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kontak/Hp</td>
+                                                <td>:</td>
+                                                <td><b> <?= $data['hp']; ?></b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Panjar TBS/BRD</td>
+                                                <td>:</td>
+                                                <td><b> Rp.<?= rp($data['panjar_tbs']); ?>,-</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jumlah Cicilan</td>
+                                                <td>:</td>
+                                                <td><b> Rp.<?= rp($sum_ptg_hutang); ?>,-</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sisa Panjar TBS/BRD</td>
+                                                <td>:</td>
+                                                <td><b> Rp.<?= rp($data['panjar_tbs'] - $sum_ptg_hutang); ?>,-</b></td>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                    </tbody>
+                                </table>
+                                <div class="row text-center">
                                     <div class="col-md-12">
-                                        <a href="tambah-suplayer?jenis=agen" class="btn btn-outline-primary"> <i class="fa fa-plus"></i> Tambah Suplayer</a>
+                                        <hr>
+                                        <h3>Cicilan Panjar TBS/BRD</h3>
+                                        <hr>
                                     </div>
                                 </div>
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table class="table table-bordered dt-responsive nowrap mt-2" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr class="align-middle text-center bg-primary text-dark">
                                             <th width="5">No</th>
-                                            <th>Nama Suplayer</th>
-                                            <th width="100">Hp</th>
-                                            <th>Alamat</th>
-                                            <th width="100">Panjar TBS/BRD</th>
-                                            <th width="100">Opsi</th>
+                                            <th>Tanggal</th>
+                                            <th width="200">Netto</th>
+                                            <th width="300">Komoditas</th>
+                                            <th width="200">Panjar TBS/BRD</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_suplayer where jenis='agen'");
+                                        $query = mysqli_query($koneksi, "select * from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.id='$_GET[x]' and b.jenis='$_GET[kategori]'");
                                         while ($data = mysqli_fetch_array($query)) :
                                             $nm_suplayer = $data['nm_suplayer'];
                                             $jenis = $data['jenis'];
                                         ?>
                                             <tr class="align-middle">
                                                 <td class="text-center"><?= $no++; ?></td>
-                                                <td><a class="text-primary" href="data-agen-detail.php?x=<?= $data['id'] ?>&kategori=<?= $data['jenis'] ?>"><b><?= $data['nm_suplayer']; ?></b></a></td>
-                                                <td class="text-center"><?= $data['hp']; ?></td>
-                                                <td><?= $data['alamat']; ?></td>
-                                                <td class="text-center">Rp.<?= rp($data['panjar_tbs']); ?>,-</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdateSuplayer<?= $data['id'] ?>"><i class="fa fa-edit"></i></a>
-                                                    <a href="data-agen?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
-                                                </td>
+                                                <td><b><?= tgl_indo($data['tanggal']); ?></b></td>
+                                                <td class="text-center"><?= rp($data['tbg_bersih']); ?> Kg</td>
+                                                <td class="text-center"><?= $data['jenis2']; ?></td>
+                                                <td class="text-center">Rp.<?= rp($data['ptg_hutang']); ?>,-</td>
                                             </tr>
                                             <?php include('modal-update-suplayer.php'); ?>
                                             <script>
@@ -138,6 +181,12 @@ if ($_SESSION['level'] == "") {
                                             </script>
                                         <?php endwhile; ?>
                                     </tbody>
+                                    <tfoot>
+                                        <tr class="bg-primary text-dark">
+                                            <td colspan="4" style="text-align: end;"><b>Jumlah</b></td>
+                                            <td class="text-center"><b>Rp.<?= rp($sum_ptg_hutang); ?>,-</b></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
 
                             </div>

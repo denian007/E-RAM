@@ -92,7 +92,7 @@ if ($_SESSION['level'] == "") {
                                                     <option value=""></option>
                                                     <?php
                                                     $pilih_suplayer = array();
-                                                    $query = mysqli_query($koneksi, "select * from ta_suplayer where jenis='petani'");
+                                                    $query = mysqli_query($koneksi, "select DISTINCT a.nm_suplayer,a.hp,(a.panjar_tbs)-sum(b.ptg_hutang) as ptg_hutang from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.jenis='petani' GROUP BY a.nm_suplayer");
                                                     while ($data = mysqli_fetch_array($query)) :
                                                         $pilih_suplayer[$data['nm_suplayer']] = $data;
                                                     ?>
@@ -124,7 +124,7 @@ if ($_SESSION['level'] == "") {
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <b>Panjar TBS</b>
+                                                <b>Sisa Panjar TBS</b>
                                                 <select name="panjar_tbs" class="form-control">
                                                     <script>
                                                         var ambil_komponen1 = <?php echo json_encode($pilih_suplayer); ?>;
@@ -135,8 +135,8 @@ if ($_SESSION['level'] == "") {
                                                                     var set = jQuery(this).val();
                                                                     jQuery('select[name="panjar_tbs"]').html(
                                                                         '<option value="' + ambil_komponen1[
-                                                                            set].panjar_tbs + '">' +
-                                                                        ambil_komponen1[set].panjar_tbs + '</option>');
+                                                                            set].ptg_hutang + '">' +
+                                                                        ambil_komponen1[set].ptg_hutang + '</option>');
                                                                 });
                                                         });
                                                     </script>
