@@ -1,6 +1,5 @@
 <?php
 include('session.php');
-include('read-saldo.php');
 //echo print_r($_SESSION);
 if ($_SESSION['level'] == "") {
     header("location:../index?id=gagal");
@@ -11,7 +10,7 @@ if ($_SESSION['level'] == "") {
 
 <head>
     <?php include('../meta.php'); ?>
-    <title>Form Input Transaksi Agen</title>
+    <title>Pengaturan Driver</title>
     <link rel="shortcut icon" href="<?= $base_url ?>/logo.png">
     <script src="<?= $base_url ?>/assets/jquery-3.6.1.min.js"></script>
     <!-- Plugins css -->
@@ -62,7 +61,7 @@ if ($_SESSION['level'] == "") {
                             </div>
                         </div>
 
-                        <h4 class="page-title"> Form Input Transaksi Agen </h4>
+                        <h4 class="page-title"> Pengaturan Driver </h4>
                     </div>
                 </div>
             </div>
@@ -77,45 +76,70 @@ if ($_SESSION['level'] == "") {
                     <div class="col-lg-12">
                         <div class="card m-b-20">
                             <div class="card-body mb-5">
-
-                                <h4 class="mt-0 header-title">Form Pengisian Biodata Suplayer</h4>
-                                <p class="text-muted m-b-30"></p>
-
-                                <form action="f-add-data-suplayer.php" method="POST">
+                                <p class="text-head"></p>
+                                <form action="f-pengaturan-driver.php" method="POST">
                                     <div class="row">
-                                        <div class="col-md-12" style="display: none;">
-                                            <input type="text" class="form-control" name="jenis" value="<?= $_GET['jenis']; ?>">
+                                        <div class="col-md-12">
+                                            <table style="width: 100%;" class="table-stripped table-hover table-success p-5">
+                                                <tbody>
+                                                    <?php
+                                                    $query = mysqli_query($koneksi, "select * from ta_driver where id='1'");
+                                                    while ($data = mysqli_fetch_array($query)) :
+                                                    ?>
+                                                        <tr style="display: none;">
+                                                            <td width="130"><b> ID</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="id" value="<?= $data['id'] ?>" readonly>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130"><b> Nama</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="nm_driver" value="<?= $data['nm_driver'] ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130"><b> Kontak/Hp</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="hp" value="<?= $data['hp'] ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130"><b> Alamat</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="alamat" value="<?= $data['alamat'] ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130"><b> Nama Kendaraan</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="nm_mobil" value="<?= $data['nm_mobil'] ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="130"><b> Nomor Polisi</b></td>
+                                                            <td width="1">:</td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="plat" value="<?= $data['plat'] ?>">
+                                                            </td>
+                                                        </tr>
+                                                    <?php endwhile; ?>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="col-md-6 mt-3">
-                                            <b>Nama Suplayer</b>
-                                            <input type="text" class="form-control" name="nm_suplayer" required oninvalid="this.setCustomValidity('Masukan Nama Suplayer')" oninput="setCustomValidity('')">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <b>Kontak / Hp</b>
-                                            <input type="number" class="form-control" name="hp" value="08" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mt-3">
-                                            <b>Alamat</b>
-                                            <textarea name="alamat" class="form-control" rows="1" required oninvalid="this.setCustomValidity('Masukan Alamat Suplayer')" oninput="setCustomValidity('')"></textarea>
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <b>Panjas TBS / BRD</b>
-                                            <input type="number" class="form-control" name="panjar_tbs" value="0" placeholder="Jika Tidak ada masukan angka NOL" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-12" style="text-align: end;">
-                                            <a href="" class="btn btn-secondary" onclick="history.back(-1)"><i class="mdi mdi-replay"></i> Batal</a>
-                                            <button type="submit" class="btn btn-primary" name="bsimpan"><i class="fa fa-save"></i> Simpan</button>
+                                        <div class="col-md-12 mt-5">
+                                            <button type="submit" name="bsimpan" class="btn btn-outline-primary btn-block"><i class="fas fa-save"></i> Simpan</button>
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
-                    </div> <!-- end col -->
+                    </div>
                 </div> <!-- end row -->
 
             </div>
@@ -155,16 +179,6 @@ if ($_SESSION['level'] == "") {
 
     <!-- App js -->
     <script src="<?= $base_url ?>/assets/js/app.js"></script>
-
-    <script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
-    <!-- <script type="text/javascript">
-        $(document).ready(function() {
-            // Format mata uang.
-            $('.uang').mask('0.000.000.000', {
-                reverse: true
-            });
-        })
-    </script> -->
 
 
 

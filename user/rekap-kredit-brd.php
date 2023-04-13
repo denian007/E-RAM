@@ -1,6 +1,6 @@
 <?php
 include('session.php');
-include('read-transaksi-petani.php');
+include('read-buah-keluar.php');
 //echo print_r($_SESSION);
 if ($_SESSION['level'] == "") {
     header("location:../index?id=gagal");
@@ -11,7 +11,7 @@ if ($_SESSION['level'] == "") {
 
 <head>
     <?php include('../meta.php'); ?>
-    <title>Transaksi Petani</title>
+    <title>Rekap Buah Kredit</title>
     <link rel="shortcut icon" href="<?= $base_url ?>/logo.png">
     <script src="<?= $base_url ?>/assets/jquery-3.6.1.min.js"></script>
 
@@ -20,6 +20,7 @@ if ($_SESSION['level'] == "") {
     <link href="<?= $base_url ?>/plugins//datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!-- Responsive datatable examples -->
     <link href="<?= $base_url ?>/plugins//datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
     <link href="<?= $base_url ?>/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?= $base_url ?>/assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="<?= $base_url ?>/assets/css/style.css" rel="stylesheet" type="text/css">
@@ -60,7 +61,7 @@ if ($_SESSION['level'] == "") {
                             </div>
                         </div>
 
-                        <h4 class="page-title">Transaksi Petani</h4>
+                        <h4 class="page-title">Rekap Buah Kredit</h4>
 
                     </div>
                 </div>
@@ -80,54 +81,55 @@ if ($_SESSION['level'] == "") {
                                 <h4 class="mt-0 header-title"></h4>
                                 <p class="text-muted m-b-30">
                                 </p>
-                                <div class="row mb-4">
+                                <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <a href="form-transasi-petani?komoditas=tbs" class="btn btn-outline-primary"> <i class="fa fa-plus"></i> Tambah Transaksi</a>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-filter"></i> Filter Bulanan
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-01&komoditas=brd">Januari <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-02&komoditas=brd">Februari <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-03&komoditas=brd">Maret <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-04&komoditas=brd">April <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-05&komoditas=brd">Mei <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-06&komoditas=brd">Juni <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-07&komoditas=brd">Juli <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-08&komoditas=brd">Agustus <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-09&komoditas=brd">September <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-10&komoditas=brd">Oktober <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-11&komoditas=brd">November <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-12&komoditas=brd">Desember <?= date('Y'); ?></a>
+                                            </div>
+                                        </div>
+                                        <a target="_blank" href="filter-rekap-kredit-all.php?komoditas=brd" class="btn btn-outline-warning btn-block"><i class="fa fa-print"></i> Cetak Semua</a>
                                     </div>
                                 </div>
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
-                                        <tr class="align-middle text-center bg-primary text-dark">
+                                        <tr class="text-center bg-primary text-white">
                                             <th width="5">No</th>
-                                            <th>Nama Suplayer</th>
-                                            <th>Bruto</th>
-                                            <th>Tara</th>
-                                            <th>Netto</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah</th>
-                                            <th>Tanggal</th>
-                                            <th width="100">Opsi</th>
+                                            <th width="500">Nama Suplayer</th>
+                                            <th width="100">Pemasok</th>
+                                            <th width="100">Netto</th>
+                                            <th width="100">Tanggal</th>
                                         </tr>
                                     </thead>
+
+
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$tahun%' and jenis2='tbs' and jenis like '%petani%' order by time_stamp desc");
+                                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$tahun%' and jenis2='brd'");
                                         while ($data = mysqli_fetch_array($query)) :
                                         ?>
-                                            <tr class="align-middle">
+                                            <tr>
                                                 <td class="text-center"><?= $no++; ?></td>
                                                 <td><?= $data['nm_suplayer']; ?></td>
-                                                <td class="text-center"><?= rp($data['tbg_masuk']); ?></td>
-                                                <td class="text-center"><?= rp($data['tbg_keluar'] + $data['ptg_kg']); ?></td>
-                                                <td class="text-center"><?= rp($data['tbg_bersih']); ?></td>
-                                                <td class="text-center">Rp. <?= rp($data['harga']); ?> ,-</td>
-                                                <td class="text-center">Rp. <?= rp($data['jumlah']); ?> ,-</td>
+                                                <td class="text-center"><?= $data['jenis']; ?></td>
+                                                <td class="text-center"><?= rp($data['tbg_bersih']); ?> Kg</td>
                                                 <td class="text-center"><?= tgl_indo($data['tanggal']); ?></td>
-                                                <td class="text-center">
-                                                    <a href="" data-toggle="modal" data-target="#modalUpdatePetani<?= $data['id'] ?>"><button class="btn btn-outline-primary" <?= $otoritas1; ?>><i class="fa fa-edit text-primary"></i></button></a>
-                                                    <div class="btn-group" role="group">
-                                                        <button id="btnGroupVerticalDrop1" type="button" class="btn btn-outline-warning ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fa fa-print"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-                                                            <a class="dropdown-item btn btn-warning" target="_blank" href="../cetak/cetak-<?= $data['jenis2'] ?>?x=<?= $data['id'] ?>">Cetak Android</a>
-                                                            <a class="dropdown-item btn btn-primary" href="#">Cetak Komputer</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                             </tr>
-                                            <?php include('modal-update-petani.php'); ?>
                                         <?php endwhile; ?>
                                     </tbody>
                                 </table>
@@ -179,6 +181,7 @@ if ($_SESSION['level'] == "") {
 
     <!-- App js -->
     <script src="<?= $base_url ?>/assets/js/app.js"></script>
+
 
 </body>
 

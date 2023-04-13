@@ -82,7 +82,7 @@ if ($_SESSION['level'] == "") {
                                 </p>
                                 <div class="row mb-4">
                                     <div class="col-md-12">
-                                        <a href="tambah-suplayer?jenis=petani" class="btn btn-outline-primary"> <i class="fa fa-plus"></i> Tambah Suplayer</a>
+                                        <a href="tambah-suplayer?jenis=petani"><button class="btn btn-outline-primary text-primary"> <i class="fa fa-plus"></i> Tambah Suplayer</button></a>
                                     </div>
                                 </div>
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -93,7 +93,7 @@ if ($_SESSION['level'] == "") {
                                             <th width="100">Hp</th>
                                             <th>Alamat</th>
                                             <th width="100">Panjar TBS/BRD</th>
-                                            <th width="100">Opsi</th>
+                                            <!-- <th width="100">Opsi</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -110,9 +110,9 @@ if ($_SESSION['level'] == "") {
                                                 <td class="text-center"><?= $data['hp']; ?></td>
                                                 <td><?= $data['alamat']; ?></td>
                                                 <td class="text-center">Rp.<?= rp($data['panjar_tbs']); ?>,-</td>
-                                                <td class="text-center">
+                                                <!-- <td class="text-center">
                                                     <a href="" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdateSuplayer<?= $data['id'] ?>"><i class="fa fa-edit"></i></a>
-                                                    <a href="data-agen?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
+                                                    <a href="data-agen?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a> -->
                                                 </td>
                                             </tr>
                                             <?php include('modal-update-suplayer.php'); ?>

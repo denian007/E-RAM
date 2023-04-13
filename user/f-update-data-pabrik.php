@@ -16,9 +16,8 @@ if (isset($_POST['bsimpan'])) {
     if ($edit) //jika edit sukses
     {
         $insert_log = mysqli_query($koneksi, "INSERT INTO log(username,hal,pesan,time_stamp) VALUES('$username','Update','$username berhasil update data pabrik','$time_stamp')");
-        header("location:daftar-pabrik?id=update-berhasil");
+        header("location:daftar-pabrik?id=update-success");
     } else {
-        $insert_log = mysqli_query($koneksi, "INSERT INTO log(username,hal,pesan,time_stamp) VALUES('$username','Update','$username Gagal update data pabrik','$time_stamp')");
-        header("location:daftar-pabrik?id=update-berhasil");
+        header("location:daftar-pabrik?id=update-success");
     }
 }

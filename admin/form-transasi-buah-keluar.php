@@ -292,7 +292,7 @@ if ($_SESSION['level'] == "") {
                                             </table>
                                         </div>
                                         <div class="col-md-12" style="text-align: end;">
-                                            <a href="" class="btn btn-outline-danger mt-3"><i class="fas fa-undo-alt"></i> kembali</a>
+                                            <button type="button" class="btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-undo-alt"></i> Kembali</button>
                                             <button type="submit" name="bsimpan" class="btn btn-outline-primary mt-3 ml-2"><i class="fa fa-save"></i> Simpan</button>
                                         </div>
                                     </div>

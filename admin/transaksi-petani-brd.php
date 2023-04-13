@@ -121,7 +121,7 @@ if ($_SESSION['level'] == "") {
                                                             <i class="fa fa-print"></i>
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-                                                            <a class="dropdown-item btn btn-warning" target="_blank" href="cetak-agen.php?x=<?= $data['id'] ?>">Cetak Android</a>
+                                                            <a class="dropdown-item btn btn-warning" target="_blank" href="../cetak/cetak-<?= $data['jenis2'] ?>?x=<?= $data['id'] ?>">Cetak Android</a>
                                                             <a class="dropdown-item btn btn-primary" href="#">Cetak Komputer</a>
                                                         </div>
                                                     </div>

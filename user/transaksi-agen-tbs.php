@@ -115,40 +115,19 @@ if ($_SESSION['level'] == "") {
                                                 <td class="text-center">Rp. <?= rp($data['jumlah']); ?> ,-</td>
                                                 <td class="text-center"><?= tgl_indo($data['tanggal']); ?></td>
                                                 <td class="text-center">
-                                                    <a href="" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdateAgen<?= $data['id'] ?>"><i class="fa fa-edit"></i></a>
+                                                    <a href="" data-toggle="modal" data-target="#modalUpdateAgen<?= $data['id'] ?>"><button class="btn btn-outline-primary" <?= $otoritas1; ?>><i class="fa fa-edit text-primary"></i></button></a>
                                                     <div class="btn-group" role="group">
                                                         <button id="btnGroupVerticalDrop1" type="button" class="btn btn-outline-warning ml-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-print"></i>
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-                                                            <a class="dropdown-item btn btn-warning" target="_blank" href="cetak-agen.php?x=<?= $data['id'] ?>">Cetak Android</a>
-                                                            <a class="dropdown-item btn btn-primary" target="_blank" href="cetak-agen2.php?x=<?= $data['id'] ?>">Cetak Komputer</a>
+                                                            <a class="dropdown-item btn btn-warning" target="_blank" href="../cetak/cetak-<?= $data['jenis2'] ?>?x=<?= $data['id'] ?>">Cetak Android</a>
+                                                            <a class="dropdown-item btn btn-primary" href="#">Cetak Komputer</a>
                                                         </div>
                                                     </div>
-                                                    <a href="transaksi-agen-tbs?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php include('modal-update-agen.php'); ?>
-                                            <script>
-                                                $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
-                                                    e.preventDefault();
-                                                    const href = $(this).attr('href');
-                                                    Swal.fire({
-                                                        title: 'Perhatian !',
-                                                        text: "Apakah anda yakin ingin menghapus data faktur <?= $data['nm_suplayer'] ?>?",
-                                                        icon: 'warning',
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: '#d33',
-                                                        cancelButtonColor: '#3085d6',
-                                                        confirmButtonText: 'Hapus',
-                                                        cancelButtonText: 'Batal'
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.location.href = href;
-                                                        }
-                                                    })
-                                                })
-                                            </script>
                                         <?php endwhile; ?>
                                     </tbody>
                                 </table>

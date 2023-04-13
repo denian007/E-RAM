@@ -89,7 +89,7 @@ if ($_SESSION['level'] == "") {
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <td width="100">Register</td>
+                                                        <td width="150">Register</td>
                                                         <td width="1">:</td>
                                                         <td>
                                                             <input type="text" class="form-control" name="register" id="register" value="<?= $kd_reg ?><?= $reg_baru ?>" readonly>
@@ -253,6 +253,28 @@ if ($_SESSION['level'] == "") {
                                                                                     '<option value="' + ambil_komponen1[
                                                                                         set].alamat_pabrik + '">' +
                                                                                     ambil_komponen1[set].alamat_pabrik + '</option>');
+                                                                            });
+                                                                    });
+                                                                </script>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Biaya Operasional</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <select name="uang_jalan" class="form-control" id="uang_jalan">
+                                                                <script>
+                                                                    var ambil_komponen1 = <?php echo json_encode($pilih_pabrik); ?>;
+                                                                    console.log(ambil_komponen1);
+                                                                    jQuery(document).ready(function() {
+                                                                        jQuery('select[name="pabrik_tujuan"]').on('change',
+                                                                            function() {
+                                                                                var set = jQuery(this).val();
+                                                                                jQuery('select[name="uang_jalan"]').html(
+                                                                                    '<option value="' + ambil_komponen1[
+                                                                                        set].uang_jalan + '">' +
+                                                                                    ambil_komponen1[set].uang_jalan + '</option>');
                                                                             });
                                                                     });
                                                                 </script>

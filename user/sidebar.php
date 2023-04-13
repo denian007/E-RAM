@@ -33,21 +33,6 @@
                     </ul>
                 </li>
 
-
-                <li class="has-submenu">
-                    <a href="#"><i class="mdi mdi-settings text-primary" style="font-size: 20px;"></i>Pengaturan</a>
-                    <ul class="submenu megamenu">
-                        <li>
-                            <ul>
-                                <li><a href="pengaturan-aplikasi">Pengaturan RAMP</a></li>
-                                <li><a href="daftar-pabrik">Daftar pabrik</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#modalUpdateUser">Pengaturan User</a></li>
-                                <li><a href="otoritas-user">Otoritas User</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="has-submenu">
                     <a href="../logout.php"><i class="mdi mdi-power text-primary" style="font-size: 20px;"></i>Logout</a>
                 </li>

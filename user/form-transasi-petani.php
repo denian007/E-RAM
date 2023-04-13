@@ -92,7 +92,7 @@ if ($_SESSION['level'] == "") {
                                                     <option value=""></option>
                                                     <?php
                                                     $pilih_suplayer = array();
-                                                    $query = mysqli_query($koneksi, "select * from ta_suplayer where jenis='petani'");
+                                                    $query = mysqli_query($koneksi, "select DISTINCT a.nm_suplayer,a.hp,a.panjar_tbs,(a.panjar_tbs)-sum(b.ptg_hutang) as ptg_hutang from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.jenis='petani' GROUP BY a.nm_suplayer");
                                                     while ($data = mysqli_fetch_array($query)) :
                                                         $pilih_suplayer[$data['nm_suplayer']] = $data;
                                                     ?>
@@ -124,7 +124,7 @@ if ($_SESSION['level'] == "") {
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <b>Panjar TBS/BRD</b>
+                                                <b>Sisa Panjar TBS</b>
                                                 <select name="panjar_tbs" class="form-control">
                                                     <script>
                                                         var ambil_komponen1 = <?php echo json_encode($pilih_suplayer); ?>;
@@ -134,9 +134,9 @@ if ($_SESSION['level'] == "") {
                                                                 function() {
                                                                     var set = jQuery(this).val();
                                                                     jQuery('select[name="panjar_tbs"]').html(
-                                                                        '<option value="' + ambil_komponen1[
-                                                                            set].panjar_tbs + '">' +
-                                                                        ambil_komponen1[set].panjar_tbs + '</option>');
+                                                                        '<option value="">Total Panjar TBS ' +
+                                                                        ambil_komponen1[set].panjar_tbs + ' - Sudah Bayar ' +
+                                                                        ambil_komponen1[set].ptg_hutang + '</option>');
                                                                 });
                                                         });
                                                     </script>
@@ -179,15 +179,15 @@ if ($_SESSION['level'] == "") {
                                                 <label for="tbg_masuk" class="col-sm-3 col-form-label">Potongan Wajib</label>
                                                 <div class="col-sm-3">
                                                     <small>Persen</small>
-                                                    <input class="form-control bg-primary text-dark" name="ptg_persen" id="ptg_persen" type="number" value="<?= $persen_petani_tbs ?>">
+                                                    <input class="form-control bg-primary text-dark" name="ptg_persen" id="ptg_persen" type="text" value="<?= $persen_petani_tbs ?>">
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <small>Persen #2</small>
-                                                    <input class="form-control bg-primary text-dark" name="ptg_persen2" id="ptg_persen2" type="number" value="0">
+                                                    <input class="form-control bg-primary text-dark" name="ptg_persen2" id="ptg_persen2" type="text" value="0">
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <small>Kg</small>
-                                                    <input class="form-control bg-primary text-dark" name="ptg_kg" id="ptg_kg" type="number" value="0">
+                                                    <input class="form-control bg-primary text-dark" name="ptg_kg" id="ptg_kg" type="text" value="0">
                                                 </div>
                                             </div>
 

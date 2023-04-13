@@ -48,7 +48,7 @@ if ($_SESSION['level'] == "") {
                     <tbody>
                         <?php
                         $no = 1;
-                        $query = mysqli_query($koneksi, "select * from ta_transaksi");
+                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$_GET[bulan]%' and jenis2='$_GET[komoditas]'");
                         while ($data = mysqli_fetch_array($query)) :
                         ?>
                             <tr>
@@ -63,7 +63,7 @@ if ($_SESSION['level'] == "") {
                     <tfoot>
                         <?php
                         $no = 1;
-                        $query = mysqli_query($koneksi, "select sum(tbg_masuk) as tbg_masuk,sum(tbg_keluar) as tbg_keluar,sum(tbg_bersih) as tbg_bersih from ta_transaksi");
+                        $query = mysqli_query($koneksi, "select sum(tbg_masuk) as tbg_masuk,sum(tbg_keluar) as tbg_keluar,sum(tbg_bersih) as tbg_bersih from ta_transaksi where time_stamp like '%$_GET[bulan]%' and jenis2='$_GET[komoditas]'");
                         while ($data = mysqli_fetch_array($query)) :
                         ?>
                             <tr>

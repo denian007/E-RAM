@@ -88,21 +88,21 @@ if ($_SESSION['level'] == "") {
                                                 <i class="fas fa-filter"></i> Filter Bulanan
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-01">Januari <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-02">Februari <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-03">Maret <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-04">April <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-05">Mei <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-06">Juni <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-07">Juli <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-08">Agustus <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-09">September <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-10">Oktober <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-11">November <?= date('Y'); ?></a>
-                                                <a class="dropdown-item" target="_blank" href="filter-rekap-buah-kredit.php?bulan=<?= date('Y'); ?>-12">Desember <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-01&komoditas=tbs">Januari <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-02&komoditas=tbs">Februari <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-03&komoditas=tbs">Maret <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-04&komoditas=tbs">April <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-05&komoditas=tbs">Mei <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-06&komoditas=tbs">Juni <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-07&komoditas=tbs">Juli <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-08&komoditas=tbs">Agustus <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-09&komoditas=tbs">September <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-10&komoditas=tbs">Oktober <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-11&komoditas=tbs">November <?= date('Y'); ?></a>
+                                                <a class="dropdown-item" target="_blank" href="filter-rekap-kredit.php?bulan=<?= date('Y'); ?>-12&komoditas=tbs">Desember <?= date('Y'); ?></a>
                                             </div>
                                         </div>
-                                        <a target="_blank" href="filter-rekap-buah-kredit-all.php" class="btn btn-outline-warning btn-block"><i class="fa fa-print"></i> Cetak Semua</a>
+                                        <a target="_blank" href="filter-rekap-kredit-all.php?komoditas=tbs" class="btn btn-outline-warning btn-block"><i class="fa fa-print"></i> Cetak Semua</a>
                                     </div>
                                 </div>
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -111,8 +111,6 @@ if ($_SESSION['level'] == "") {
                                             <th width="5">No</th>
                                             <th width="500">Nama Suplayer</th>
                                             <th width="100">Pemasok</th>
-                                            <th width="100">Broto</th>
-                                            <th width="100">Tara</th>
                                             <th width="100">Netto</th>
                                             <th width="100">Tanggal</th>
                                         </tr>
@@ -122,15 +120,13 @@ if ($_SESSION['level'] == "") {
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$tahun%'");
+                                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$tahun%' and jenis2='tbs'");
                                         while ($data = mysqli_fetch_array($query)) :
                                         ?>
                                             <tr>
                                                 <td class="text-center"><?= $no++; ?></td>
                                                 <td><?= $data['nm_suplayer']; ?></td>
                                                 <td class="text-center"><?= $data['jenis']; ?></td>
-                                                <td class="text-center"><?= rp($data['tbg_masuk']); ?> Kg</td>
-                                                <td class="text-center"><?= rp($data['tbg_keluar']); ?> Kg</td>
                                                 <td class="text-center"><?= rp($data['tbg_bersih']); ?> Kg</td>
                                                 <td class="text-center"><?= tgl_indo($data['tanggal']); ?></td>
                                             </tr>

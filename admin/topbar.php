@@ -34,7 +34,7 @@
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalUpdateUser"><i class="mdi mdi-account-circle m-r-5"></i> Profil</a>
-                            <a class="dropdown-item d-block" href="<?= $base_url ?>/"><span class="badge badge-success float-right">1</span><i class="mdi mdi-settings m-r-5"></i> Pengaturan</a>
+                            <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">1</span><i class="mdi mdi-settings m-r-5"></i> Pengaturan</a>
                             <a class="dropdown-item text-danger" href="<?= $base_url ?>/logout"><i class="mdi mdi-power text-danger"></i> Logout</a>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ include('session.php');
 if (isset($_POST['bsimpan'])) {
     //Data akan di edit
     $nm_suplayer = $_POST['nm_suplayer'];
+    $komoditas = $_POST['jenis2'];
     $edit = mysqli_query($koneksi, "UPDATE ta_transaksi set
                                                 nm_suplayer = '$_POST[nm_suplayer]',
                                                 hp = '$_POST[hp]',
@@ -24,9 +25,9 @@ if (isset($_POST['bsimpan'])) {
     if ($edit) //jika edit sukses
     {
         $insert_log = mysqli_query($koneksi, "INSERT INTO log(username,hal,pesan,time_stamp) VALUES('$username','Update','$username berhasil update data Transaksi $nm_suplayer','$time_stamp')");
-        header("location:transaksi-agen?id=update-transaksi-success&suplayer=$nm_suplayer");
+        header("location:transaksi-agen-$komoditas?id=update-transaksi-success&suplayer=$nm_suplayer");
     } else {
         $insert_log = mysqli_query($koneksi, "INSERT INTO log(username,hal,pesan,time_stamp) VALUES('$username','Update','$username Gagal update data Transaksi $nm_suplayer','$time_stamp')");
-        header("location:transaksi-agen?id=update-transaksi-gagal&suplayer=$nm_suplayer");
+        header("location:transaksi-agen-$komoditas?id=update-transaksi-gagal&suplayer=$nm_suplayer");
     }
 }

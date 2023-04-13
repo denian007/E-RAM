@@ -78,7 +78,7 @@ if ($_SESSION['level'] == "") {
                         <div class="card m-b-20">
                             <div class="card-body mb-5">
                                 <p class="text-head"></p>
-                                <form action="f-add-buah-keluar.php" method="POST">
+                                <form action="f-form-update-buah-keluar.php" method="POST">
                                     <?php
                                     $query = mysqli_query($koneksi, "select * from ta_buah_keluar where id='$_GET[id]'");
                                     while ($data = mysqli_fetch_array($query)) :
@@ -97,6 +97,10 @@ if ($_SESSION['level'] == "") {
                                         $hp = $data['hp'];
                                         $nm_pengirim = $data['nm_pengirim'];
                                         $tanggal = $data['tanggal'];
+                                        $uang_jalan = $data['uang_jalan'];
+                                        $netto_pabrik = $data['netto_pabrik'];
+                                        $jenis2 = $data['jenis2'];
+                                        $untung_kg = $data['untung_kg'];
 
                                     ?>
                                     <?php endwhile; ?>
@@ -105,6 +109,7 @@ if ($_SESSION['level'] == "") {
                                             <div class="hidden" style="display: none;">
                                                 <input type="text" class="form-control" name="time_stamp" value="<?= $time_stamp ?>">
                                                 <input type="text" class="form-control" name="id" value="<?= $id ?>">
+                                                <input type="text" class="form-control" name="jenis2" value="<?= $jenis2 ?>">
                                             </div>
                                             <table class="table">
                                                 <tbody>
@@ -222,7 +227,7 @@ if ($_SESSION['level'] == "") {
                                                         <td>Alamat Pabrik</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <select name="pabrik_tujuan3" class="form-control" id="pabrik_tujuan3">
+                                                            <select name="alamat_pabrik" class="form-control">
                                                                 <option value="<?= $alamat_pabrik ?>"><?= $alamat_pabrik ?></option>
                                                                 <script>
                                                                     var ambil_komponen1 = <?php echo json_encode($pilih_pabrik); ?>;
@@ -231,7 +236,7 @@ if ($_SESSION['level'] == "") {
                                                                         jQuery('select[name="pabrik_tujuan"]').on('change',
                                                                             function() {
                                                                                 var set = jQuery(this).val();
-                                                                                jQuery('select[name="pabrik_tujuan3"]').html(
+                                                                                jQuery('select[name="alamat_pabrik"]').html(
                                                                                     '<option value="' + ambil_komponen1[
                                                                                         set].alamat_pabrik + '">' +
                                                                                     ambil_komponen1[set].alamat_pabrik + '</option>');
@@ -242,17 +247,54 @@ if ($_SESSION['level'] == "") {
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Biaya Operasional</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <select name="uang_jalan" class="form-control" id="uang_jalan">
+                                                                <option value="<?= $uang_jalan ?>"><?= $uang_jalan ?></option>
+                                                                <script>
+                                                                    var ambil_komponen1 = <?php echo json_encode($pilih_pabrik); ?>;
+                                                                    console.log(ambil_komponen1);
+                                                                    jQuery(document).ready(function() {
+                                                                        jQuery('select[name="pabrik_tujuan"]').on('change',
+                                                                            function() {
+                                                                                var set = jQuery(this).val();
+                                                                                jQuery('select[name="uang_jalan"]').html(
+                                                                                    '<option value="' + ambil_komponen1[
+                                                                                        set].uang_jalan + '">' +
+                                                                                    ambil_komponen1[set].uang_jalan + '</option>');
+                                                                            });
+                                                                    });
+                                                                </script>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Nama Pengirim</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" class="form-control" name="nm_pengirim" id="nm_pengirim" value="<?= $nm_pengirim ?>" required>
+                                                            <input type="text" class="form-control" name="nm_pengirim" value="<?= $nm_pengirim ?>" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Netto Pabrik</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <input type="text" class="form-control bg-info text-dark" name="netto_pabrik" id="netto_pabrik" value="<?= $netto_pabrik ?>">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bertambah/Berkurang</td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="untung_kg" id="untung_kg" value="<?= $untung_kg ?>" readonly>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div class="col-md-12" style="text-align: end;">
-                                            <a href="" class="btn btn-outline-danger mt-3"><i class="fas fa-undo-alt"></i> kembali</a>
+                                            <a href="transaksi-keluar-tbs" class="btn btn-outline-danger mt-3"><i class="fas fa-undo-alt"></i> kembali</a>
                                             <button type="submit" name="bsimpan" class="btn btn-outline-primary mt-3 ml-2"><i class="fa fa-save"></i> Simpan</button>
                                         </div>
                                     </div>
@@ -320,6 +362,14 @@ if ($_SESSION['level'] == "") {
             var b = parseInt($("#mobil_buah").val());
             var ab = b / a;
             $("#total_tbs").val(ab);
+        });
+    </script>
+    <script>
+        $("#netto_pabrik").keyup(function() {
+            var a = parseInt($("#bb_buah").val());
+            var b = parseInt($("#netto_pabrik").val());
+            var ab = b - a;
+            $("#untung_kg").val(ab);
         });
     </script>
 

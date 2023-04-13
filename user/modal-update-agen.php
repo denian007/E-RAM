@@ -13,6 +13,7 @@
                         <div class="col-md-12" style="display: none;">
                             <input type="text" class="form-control" name="id" value="<?= $data['id'] ?>">
                             <input type="text" name="jenis" class="form-control" value="<?= $data['jenis'] ?>">
+                            <input type="text" name="jenis2" class="form-control" value="<?= $data['jenis2'] ?>">
                             <input type="text" class="form-control" name="time_stamp" value="<?= $time_stamp ?>" readonly>
                         </div>
                         <div class="col-md-4">

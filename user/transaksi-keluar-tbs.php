@@ -116,31 +116,10 @@ if ($_SESSION['level'] == "") {
                                                 <td class="">Berat Rata rata buah <b class="text-dark"><?= rp($data['berat_buah']); ?></b> & banyak janjang <b class="text-dark"><?= rp($data['rata_rata_buah']); ?></b></td>
                                                 <td><?= tgl_indo($data['tanggal']); ?></td>
                                                 <td class="text-center">
-                                                    <a href="form-update-buah-keluar?id=<?= $data['id'] ?>" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                                    <a href="form-update-buah-keluar?id=<?= $data['id'] ?>"><button class="btn btn-outline-primary" <?= $otoritas1; ?>><i class="fa fa-edit text-primary"></i></button></a>
                                                     <a href="" class="btn btn-outline-warning ml-2"><i class="fa fa-print"></i></a>
-                                                    <a href="transaksi-keluar-tbs?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
-                                            <script>
-                                                $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
-                                                    e.preventDefault();
-                                                    const href = $(this).attr('href');
-                                                    Swal.fire({
-                                                        title: 'Perhatian !',
-                                                        text: "Yanin ingin menghapus buah keluar dengan tujuan pabrik <?= $data['pabrik_tujuan'] ?> dengan berat <?= rp($data['tbg_buah']); ?> Kg?",
-                                                        icon: 'warning',
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: '#d33',
-                                                        cancelButtonColor: '#3085d6',
-                                                        confirmButtonText: 'Hapus',
-                                                        cancelButtonText: 'Batal'
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.location.href = href;
-                                                        }
-                                                    })
-                                                })
-                                            </script>
                                         <?php endwhile; ?>
 
                                     </tbody>

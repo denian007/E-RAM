@@ -92,7 +92,7 @@ if ($_SESSION['level'] == "") {
                                                     <option value=""></option>
                                                     <?php
                                                     $pilih_suplayer = array();
-                                                    $query = mysqli_query($koneksi, "select DISTINCT a.nm_suplayer,a.hp,(a.panjar_tbs)-sum(b.ptg_hutang) as ptg_hutang from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.jenis='agen' GROUP BY a.nm_suplayer");
+                                                    $query = mysqli_query($koneksi, "select DISTINCT a.nm_suplayer,a.hp,a.panjar_tbs,(a.panjar_tbs)-sum(b.ptg_hutang) as ptg_hutang from ta_suplayer a left join ta_transaksi b on a.nm_suplayer=b.nm_suplayer where a.jenis='agen' GROUP BY a.nm_suplayer");
                                                     while ($data = mysqli_fetch_array($query)) :
                                                         $pilih_suplayer[$data['nm_suplayer']] = $data;
                                                     ?>
@@ -134,8 +134,8 @@ if ($_SESSION['level'] == "") {
                                                                 function() {
                                                                     var set = jQuery(this).val();
                                                                     jQuery('select[name="panjar_tbs"]').html(
-                                                                        '<option value="' + ambil_komponen1[
-                                                                            set].ptg_hutang + '">' +
+                                                                        '<option value="">Total Panjar TBS ' +
+                                                                        ambil_komponen1[set].panjar_tbs + ' - Sudah Bayar ' +
                                                                         ambil_komponen1[set].ptg_hutang + '</option>');
                                                                 });
                                                         });
@@ -229,7 +229,7 @@ if ($_SESSION['level'] == "") {
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-3" style="text-align: end;">
-                                            <a href="transaksi-agen" class="btn btn-outline-danger"><i class="fas fa-undo-alt"></i> Kembali</a>
+                                            <button type="button" class="btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-undo-alt"></i> Kembali</button>
                                             <button type="submit" class="btn btn-outline-primary ml-2" name="bsimpan"><i class="fa fa-save"></i> Simpan</button>
                                         </div>
                                     </div>

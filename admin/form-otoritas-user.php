@@ -190,7 +190,7 @@ if ($_SESSION['level'] == "") {
                                             </table>
                                         </div>
                                         <div class="col-md-12" style="text-align: end;">
-                                            <a href="otoritas-user" class="btn btn-outline-danger"><i class="mdi mdi-reload"></i> Kembali</a>
+                                            <button type="button" class="btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-undo-alt"></i> Kembali</button>
                                             <button type="submit" name="bsimpan" class="btn btn-outline-primary"><i class="fas fa-save"></i> Simpan</button>
                                         </div>
                                     </div>
