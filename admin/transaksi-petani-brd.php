@@ -102,7 +102,7 @@ if ($_SESSION['level'] == "") {
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_transaksi where time_stamp like '%$tahun%' and jenis2='brd' and jenis like '%petani%' order by time_stamp desc");
+                                        $query = mysqli_query($koneksi, "select *,MID(time_stamp, 12, 8) AS pukul from ta_transaksi where time_stamp like '%$tahun%' and jenis2='brd' and jenis like '%petani%' order by time_stamp desc");
                                         while ($data = mysqli_fetch_array($query)) :
                                         ?>
                                             <tr class="align-middle">
@@ -113,7 +113,7 @@ if ($_SESSION['level'] == "") {
                                                 <td class="text-center"><?= rp($data['tbg_bersih']); ?></td>
                                                 <td class="text-center">Rp. <?= rp($data['harga']); ?> ,-</td>
                                                 <td class="text-center">Rp. <?= rp($data['jumlah']); ?> ,-</td>
-                                                <td class="text-center"><?= tgl_indo($data['tanggal']); ?></td>
+                                                <td class="text-center"><?= tgl_indo($data['tanggal']); ?> - <?= $data['pukul']; ?></td>
                                                 <td class="text-center">
                                                     <a href="" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUpdatePetani<?= $data['id'] ?>"><i class="fa fa-edit"></i></a>
                                                     <div class="btn-group" role="group">

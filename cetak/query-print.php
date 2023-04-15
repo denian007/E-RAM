@@ -1,5 +1,5 @@
 <?php include('session.php');
-$query = mysqli_query($koneksi, "select * from ta_transaksi where id='$_GET[x]'");
+$query = mysqli_query($koneksi, "select *,MID(time_stamp, 12, 8) AS pukul from ta_transaksi where id='$_GET[x]'");
 while ($data = mysqli_fetch_array($query)) :
     $nm_suplayer = $data['nm_suplayer'];
     $tanggal = tgl_indo($data['tanggal']);
@@ -16,5 +16,6 @@ while ($data = mysqli_fetch_array($query)) :
     $cicilan_panjar_tbs = $data['ptg_hutang'];
     $jumlah_bayar = $jumlah - $cicilan_panjar_tbs;
     $catatan = $data['ket'];
+    $pukul = $data['pukul'];
 ?>
     <?php endwhile; ?>

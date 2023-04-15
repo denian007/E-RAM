@@ -8,9 +8,9 @@ if (isset($_GET['hal'])) {
         {
             $nm_suplayer = $data['nm_suplayer'];
             $insert_log = mysqli_query($koneksi, "INSERT INTO log(username,hal,pesan,time_stamp) VALUES('$username','Hapus','$username Berhasil Menghapus Transaksi $nm_suplayer','$time_stamp')");
-            header("location:transaksi-agen-tbs?id=hapus-success");
+            header("location:transaksi-petani-tbs?id=hapus-success");
         } else {
-            header("location:transaksi-agen-tbs?id=hapus-gagal");
+            header("location:transaksi-petani-tbs?id=hapus-gagal");
         }
     }
 };

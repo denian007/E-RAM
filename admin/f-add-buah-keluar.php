@@ -2,7 +2,7 @@
 include('session.php');
 //jika tombol simpan diklik
 if (isset($_POST['bsimpan'])) {
-
+    $komoditas = $_POST['jenis2'];
     $edit = mysqli_query($koneksi, "INSERT INTO ta_buah_keluar (id,register,time_stamp,pabrik_tujuan,pabrik_tujuan2,alamat_pabrik,tbg_kosong,tbg_mobil_buah,tbg_buah,berat_buah,rata_rata_buah,nm_sopir,plat,nm_pengirim,hp,tanggal,jenis2,uang_jalan)
                                                VALUES ('$_POST[id]',  
                                                         '$_POST[register]',
@@ -28,8 +28,8 @@ if (isset($_POST['bsimpan'])) {
     if ($edit) //jika edit sukses
 
     {
-        header("location:transaksi-keluar-tbs?id=add-transaksi-success");
+        header("location:transaksi-keluar-$komoditas?id=add-transaksi-success");
     } else {
-        header("location:transaksi-keluar-tbs?id=add-transaksi-gagal");
+        header("location:transaksi-keluar-$komoditas?id=add-transaksi-gagal");
     }
 }

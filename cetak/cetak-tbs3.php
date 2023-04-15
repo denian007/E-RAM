@@ -32,7 +32,7 @@
         #Cetak_E-RAK {
             position: absolute;
             width: 769px;
-            height: 920px;
+            height: 980px;
             background-color: rgba(255, 255, 255, 1);
             overflow: hidden;
             --web-view-name: Cetak E-RAK;
@@ -70,7 +70,7 @@
             position: absolute;
             overflow: visible;
             width: 759px;
-            height: 690px;
+            height: 745px;
             left: 6px;
             top: 158px;
         }
@@ -205,6 +205,21 @@
             color: rgba(0, 0, 0, 1);
         }
 
+        #pukul {
+            left: 690px;
+            top: 212px;
+            position: absolute;
+            overflow: visible;
+            width: 235px;
+            white-space: nowrap;
+            text-align: left;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 1);
+        }
+
         #Timbangan_II {
             left: 18px;
             top: 323px;
@@ -250,12 +265,12 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Pot_Wajib_25 {
+        #Potongan {
             left: 18px;
             top: 423px;
             position: absolute;
             overflow: visible;
-            width: 236px;
+            width: 150px;
             white-space: nowrap;
             text-align: left;
             font-family: Segoe UI;
@@ -265,22 +280,7 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Pot_Lain_1 {
-            left: 18px;
-            top: 479px;
-            position: absolute;
-            overflow: visible;
-            width: 182px;
-            white-space: nowrap;
-            text-align: left;
-            font-family: Segoe UI;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 35px;
-            color: rgba(0, 0, 0, 1);
-        }
-
-        #Text_v {
+        #Text_u {
             left: 376px;
             top: 269px;
             position: absolute;
@@ -295,7 +295,7 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Text_w {
+        #Text_v {
             left: 376px;
             top: 323px;
             position: absolute;
@@ -310,7 +310,7 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Text_x {
+        #Text_w {
             left: 376px;
             top: 373px;
             position: absolute;
@@ -325,7 +325,7 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Text_y {
+        #Text_x {
             left: 376px;
             top: 423px;
             position: absolute;
@@ -340,9 +340,24 @@
             color: rgba(0, 0, 0, 1);
         }
 
+        #Text_y {
+            left: 376px;
+            top: 480px;
+            position: absolute;
+            overflow: visible;
+            width: 11px;
+            white-space: nowrap;
+            text-align: center;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 35px;
+            color: rgba(0, 0, 0, 1);
+        }
+
         #Text_z {
             left: 376px;
-            top: 479px;
+            top: 535px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -455,6 +470,26 @@
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
+        #Line_15 {
+            fill: transparent;
+            stroke: rgba(0, 0, 0, 1);
+            stroke-width: 1px;
+            stroke-linejoin: miter;
+            stroke-linecap: butt;
+            stroke-miterlimit: 4;
+            shape-rendering: auto;
+        }
+
+        .Line_15 {
+            overflow: visible;
+            position: absolute;
+            width: 758.562px;
+            height: 1px;
+            left: 6.5px;
+            top: 587.5px;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+        }
+
         #Line_6 {
             fill: transparent;
             stroke: rgba(0, 0, 0, 1);
@@ -471,7 +506,7 @@
             width: 758.562px;
             height: 1px;
             left: 6.5px;
-            top: 583.5px;
+            top: 640.5px;
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
@@ -491,13 +526,13 @@
             width: 758.562px;
             height: 1px;
             left: 6.5px;
-            top: 633.5px;
+            top: 690.5px;
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
         #Netto_II {
             left: 18px;
-            top: 532px;
+            top: 589px;
             position: absolute;
             overflow: visible;
             width: 118px;
@@ -512,7 +547,7 @@
 
         #Harga {
             left: 18px;
-            top: 583px;
+            top: 640px;
             position: absolute;
             overflow: visible;
             width: 94px;
@@ -527,7 +562,7 @@
 
         #Jumlah {
             left: 18px;
-            top: 633px;
+            top: 690px;
             position: absolute;
             overflow: visible;
             width: 110px;
@@ -542,7 +577,7 @@
 
         #Cicilan_Panjar_TBSBRD {
             left: 18px;
-            top: 685px;
+            top: 742px;
             position: absolute;
             overflow: visible;
             width: 352px;
@@ -557,7 +592,7 @@
 
         #Jumlah_Bayar {
             left: 18px;
-            top: 738px;
+            top: 795px;
             position: absolute;
             overflow: visible;
             width: 204px;
@@ -572,7 +607,7 @@
 
         #Catatan {
             left: 18px;
-            top: 791px;
+            top: 848px;
             position: absolute;
             overflow: visible;
             width: 120px;
@@ -585,24 +620,9 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #Text_bd {
-            left: 376px;
-            top: 532px;
-            position: absolute;
-            overflow: visible;
-            width: 11px;
-            white-space: nowrap;
-            text-align: center;
-            font-family: Segoe UI;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 35px;
-            color: rgba(0, 0, 0, 1);
-        }
-
         #Text_be {
             left: 376px;
-            top: 583px;
+            top: 589px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -617,7 +637,7 @@
 
         #Text_bf {
             left: 376px;
-            top: 633px;
+            top: 640px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -632,7 +652,7 @@
 
         #Text_bg {
             left: 376px;
-            top: 685px;
+            top: 690px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -647,7 +667,7 @@
 
         #Text_bh {
             left: 376px;
-            top: 738px;
+            top: 742px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -662,7 +682,22 @@
 
         #Text_bi {
             left: 376px;
-            top: 791px;
+            top: 795px;
+            position: absolute;
+            overflow: visible;
+            width: 11px;
+            white-space: nowrap;
+            text-align: center;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 35px;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        #Text_bj {
+            left: 376px;
+            top: 848px;
             position: absolute;
             overflow: visible;
             width: 11px;
@@ -720,12 +755,12 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #n_0_Kg {
+        #n_5_ {
             left: 397px;
             top: 424px;
             position: absolute;
             overflow: visible;
-            width: 91px;
+            width: 89px;
             white-space: nowrap;
             text-align: left;
             font-family: Segoe UI;
@@ -735,24 +770,84 @@
             color: rgba(0, 0, 0, 1);
         }
 
-        #n__Kg {
+        #n__ {
             left: 397px;
-            top: 480px;
+            top: 481px;
             position: absolute;
             overflow: visible;
-            width: 71px;
+            width: 59px;
             white-space: nowrap;
             text-align: left;
             font-family: Segoe UI;
             font-style: normal;
             font-weight: bold;
             font-size: 35px;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        #n_23_Kg {
+            left: 397px;
+            top: 536px;
+            position: absolute;
+            overflow: visible;
+            width: 111px;
+            white-space: nowrap;
+            text-align: left;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 35px;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        #Wajib {
+            left: 217px;
+            top: 432px;
+            position: absolute;
+            overflow: visible;
+            width: 70px;
+            white-space: nowrap;
+            text-align: left;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        #lain {
+            left: 217px;
+            top: 489px;
+            position: absolute;
+            overflow: visible;
+            width: 45px;
+            white-space: nowrap;
+            text-align: left;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 1);
+        }
+
+        #Jumlah_Kg {
+            left: 217px;
+            top: 544px;
+            position: absolute;
+            overflow: visible;
+            width: 128px;
+            white-space: nowrap;
+            text-align: left;
+            font-family: Segoe UI;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 28px;
             color: rgba(0, 0, 0, 1);
         }
 
         #n_886_Kg {
             left: 397px;
-            top: 532px;
+            top: 589px;
             position: absolute;
             overflow: visible;
             width: 141px;
@@ -767,7 +862,7 @@
 
         #Rp_2120- {
             left: 397px;
-            top: 583px;
+            top: 640px;
             position: absolute;
             overflow: visible;
             width: 164px;
@@ -782,7 +877,7 @@
 
         #Rp_6118320- {
             left: 397px;
-            top: 633px;
+            top: 690px;
             position: absolute;
             overflow: visible;
             width: 234px;
@@ -797,7 +892,7 @@
 
         #Rp_500000- {
             left: 397px;
-            top: 685px;
+            top: 742px;
             position: absolute;
             overflow: visible;
             width: 204px;
@@ -812,7 +907,7 @@
 
         #Rp_5600000- {
             left: 397px;
-            top: 738px;
+            top: 795px;
             position: absolute;
             overflow: visible;
             width: 234px;
@@ -827,7 +922,7 @@
 
         #n_ {
             left: 397px;
-            top: 791px;
+            top: 848px;
             position: absolute;
             overflow: visible;
             width: 15px;
@@ -856,7 +951,7 @@
             width: 758.562px;
             height: 1px;
             left: 6.5px;
-            top: 686.5px;
+            top: 743.5px;
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
@@ -876,7 +971,7 @@
             width: 758.562px;
             height: 1px;
             left: 6.5px;
-            top: 738.5px;
+            top: 795.5px;
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
@@ -896,13 +991,13 @@
             width: 758.562px;
             height: 1px;
             left: 6.5px;
-            top: 791.5px;
+            top: 848.5px;
             transform: matrix(1, 0, 0, 1, 0, 0);
         }
 
         #Copyright__E-RAM_-_Sardam_Deve {
             left: 197px;
-            top: 850px;
+            top: 910px;
             position: absolute;
             overflow: visible;
             width: 377px;
@@ -3752,7 +3847,7 @@
             <span>RAMP <?= $nm_ramp; ?><br />Alamat : <?= $alamat; ?><br />Nomor Telp. <?= $kontak; ?></span>
         </div>
         <svg class="Rectangle_1">
-            <rect id="Rectangle_1" rx="0" ry="0" x="0" y="0" width="759" height="690">
+            <rect id="Rectangle_1" rx="0" ry="0" x="0" y="0" width="759" height="745">
             </rect>
         </svg>
         <div id="Nama_Suplayer">
@@ -3779,7 +3874,10 @@
             <span><?= $nm_suplayer; ?></span>
         </div>
         <div id="n_7_Maret_2023_">
-            <span><?= $tanggal; ?> </span>
+            <span><?= $tanggal; ?></span>
+        </div>
+        <div id="pukul">
+            <span><?= $pukul; ?></span>
         </div>
         <div id="Timbangan_II">
             <span>Timbangan II</span>
@@ -3790,11 +3888,11 @@
         <div id="Netto_I">
             <span>Netto I</span>
         </div>
-        <div id="Pot_Wajib_25">
-            <span>Pot Wajib </span><span style="font-style:normal;font-weight:bold;"><?= $ptg_persen; ?></span><span>%</span>
+        <div id="Potongan">
+            <span>Potongan</span>
         </div>
-        <div id="Pot_Lain_1">
-            <span>Pot Lain </span><span style="font-style:normal;font-weight:bold;"><?= $ptg_persen2; ?></span><span>%</span>
+        <div id="Text_u">
+            <span>:</span>
         </div>
         <div id="Text_v">
             <span>:</span>
@@ -3831,6 +3929,10 @@
             <path id="Line_9" d="M 0 0 L 758.5615234375 0">
             </path>
         </svg>
+        <svg class="Line_15" viewBox="0 0 758.562 1">
+            <path id="Line_15" d="M 0 0 L 758.5615234375 0">
+            </path>
+        </svg>
         <svg class="Line_6" viewBox="0 0 758.562 1">
             <path id="Line_6" d="M 0 0 L 758.5615234375 0">
             </path>
@@ -3857,9 +3959,6 @@
         <div id="Catatan">
             <span>Catatan</span>
         </div>
-        <div id="Text_bd">
-            <span>:</span>
-        </div>
         <div id="Text_be">
             <span>:</span>
         </div>
@@ -3875,6 +3974,9 @@
         <div id="Text_bi">
             <span>:</span>
         </div>
+        <div id="Text_bj">
+            <span>:</span>
+        </div>
         <div id="n_300_Kg">
             <span><?= $tbg_masuk; ?></span><span style="font-style:normal;font-weight:normal;"> Kg</span>
         </div>
@@ -3884,11 +3986,23 @@
         <div id="n_960_Kg">
             <span><?= $tbg_kotor; ?></span><span style="font-style:normal;font-weight:normal;"> Kg</span>
         </div>
-        <div id="n_0_Kg">
+        <div id="n_5_">
+            <span><?= $ptg_persen; ?></span><span style="font-style:normal;font-weight:normal;"> %</span>
+        </div>
+        <div id="n__">
+            <span><?= $ptg_persen2; ?> </span><span style="font-style:normal;font-weight:normal;">%</span>
+        </div>
+        <div id="n_23_Kg">
             <span><?= $ptg_kg; ?></span><span style="font-style:normal;font-weight:normal;"> Kg</span>
         </div>
-        <div id="n__Kg">
-            <span><?= $ptg_kg2; ?></span><span style="font-style:normal;font-weight:normal;"> Kg</span>
+        <div id="Wajib">
+            <span>Wajib</span>
+        </div>
+        <div id="lain">
+            <span>lain</span>
+        </div>
+        <div id="Jumlah_Kg">
+            <span>Jumlah Kg</span>
         </div>
         <div id="n_886_Kg">
             <span><?= $tbg_bersih; ?></span><span style="font-style:normal;font-weight:normal;"> Kg</span>

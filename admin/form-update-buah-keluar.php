@@ -294,7 +294,7 @@ if ($_SESSION['level'] == "") {
                                             </table>
                                         </div>
                                         <div class="col-md-12" style="text-align: end;">
-                                            <button type="button" class="btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-undo-alt"></i> Kembali</button>
+                                            <button type="button" class="btn btn-secondary mt-3" onclick="history.back(-1)"><i class="fas fa-undo-alt"></i> Kembali</button>
                                             <button type="submit" name="bsimpan" class="btn btn-outline-primary mt-3 ml-2"><i class="fa fa-save"></i> Simpan</button>
                                         </div>
                                     </div>

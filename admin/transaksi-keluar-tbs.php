@@ -86,66 +86,67 @@ if ($_SESSION['level'] == "") {
                                         <a href="form-transasi-buah-keluar?komoditas=tbs" class="btn btn-outline-primary"> <i class="fa fa-plus"></i> Tambah Transaksi</a>
                                     </div>
                                 </div>
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr class="align-middle text-center bg-primary text-dark">
-                                            <th width="5">No</th>
-                                            <th>Pabrik Tujuan</th>
-                                            <th width="150">Sopir</th>
-                                            <th width="50">Bruto</th>
-                                            <th width="50">Tara</th>
-                                            <th width="50">Netto</th>
-                                            <th width="100">Spesifikasi</th>
-                                            <th>Tanggal</th>
-                                            <th width="100">Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $no = 1;
-                                        $query = mysqli_query($koneksi, "select * from ta_buah_keluar where time_stamp like '%$tahun%' and jenis2='tbs' order by time_stamp desc");
-                                        while ($data = mysqli_fetch_array($query)) :
-                                        ?>
-                                            <tr class="align-middle">
-                                                <td class="text-center"><?= $no++; ?></td>
-                                                <td><?= $data['pabrik_tujuan']; ?> <?= $data['pabrik_tujuan2']; ?> <br> <?= $data['alamat_pabrik']; ?></td>
-                                                <td><?= $data['nm_sopir']; ?> / Mobil dengan Nopol <b class="text-dark"><?= $data['plat']; ?></b></td>
-                                                <td class="text-center"><b class="text-dark"><?= rp($data['tbg_mobil_buah']); ?></b> Kg</td>
-                                                <td class="text-center"><b class="text-dark"><?= rp($data['tbg_kosong']); ?></b> Kg</td>
-                                                <td class="text-center"><b class="text-dark"><?= rp($data['tbg_buah']); ?></b> Kg</td>
-                                                <td class="">Berat Rata rata buah <b class="text-dark"><?= rp($data['berat_buah']); ?></b> & banyak janjang <b class="text-dark"><?= rp($data['rata_rata_buah']); ?></b></td>
-                                                <td><?= tgl_indo($data['tanggal']); ?></td>
-                                                <td class="text-center">
-                                                    <a href="form-update-buah-keluar?id=<?= $data['id'] ?>" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
-                                                    <a href="" class="btn btn-outline-warning ml-2"><i class="fa fa-print"></i></a>
-                                                    <a href="transaksi-keluar-tbs?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
-                                                </td>
+                                <div class="table-responsive">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr class="align-middle text-center bg-primary text-dark">
+                                                <th width="5">No</th>
+                                                <th>Pabrik Tujuan</th>
+                                                <th width="150">Sopir</th>
+                                                <th width="50">Bruto</th>
+                                                <th width="50">Tara</th>
+                                                <th width="50">Netto</th>
+                                                <th width="100">Spesifikasi</th>
+                                                <th>Tanggal</th>
+                                                <th width="100">Opsi</th>
                                             </tr>
-                                            <script>
-                                                $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
-                                                    e.preventDefault();
-                                                    const href = $(this).attr('href');
-                                                    Swal.fire({
-                                                        title: 'Perhatian !',
-                                                        text: "Yanin ingin menghapus buah keluar dengan tujuan pabrik <?= $data['pabrik_tujuan'] ?> dengan berat <?= rp($data['tbg_buah']); ?> Kg?",
-                                                        icon: 'warning',
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: '#d33',
-                                                        cancelButtonColor: '#3085d6',
-                                                        confirmButtonText: 'Hapus',
-                                                        cancelButtonText: 'Batal'
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.location.href = href;
-                                                        }
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $no = 1;
+                                            $query = mysqli_query($koneksi, "select *,MID(time_stamp, 12, 8) AS pukul from ta_buah_keluar where time_stamp like '%$tahun%' and jenis2='tbs' order by time_stamp desc");
+                                            while ($data = mysqli_fetch_array($query)) :
+                                            ?>
+                                                <tr class="align-middle">
+                                                    <td class="text-center"><?= $no++; ?></td>
+                                                    <td><?= $data['pabrik_tujuan']; ?> <?= $data['pabrik_tujuan2']; ?> <br> <?= $data['alamat_pabrik']; ?></td>
+                                                    <td><?= $data['nm_sopir']; ?> / Mobil dengan Nopol <b class="text-dark"><?= $data['plat']; ?></b></td>
+                                                    <td class="text-center"><b class="text-dark"><?= rp($data['tbg_mobil_buah']); ?></b> Kg</td>
+                                                    <td class="text-center"><b class="text-dark"><?= rp($data['tbg_kosong']); ?></b> Kg</td>
+                                                    <td class="text-center"><b class="text-dark"><?= rp($data['tbg_buah']); ?></b> Kg</td>
+                                                    <td class="">Berat Rata rata buah <b class="text-dark"><?= rp($data['berat_buah']); ?></b> & banyak janjang <b class="text-dark"><?= rp($data['rata_rata_buah']); ?></b></td>
+                                                    <td><?= tgl_indo($data['tanggal']); ?> - <?= $data['pukul']; ?></td>
+                                                    <td class="text-center">
+                                                        <a href="form-update-buah-keluar?id=<?= $data['id'] ?>" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                                        <a href="" class="btn btn-outline-warning ml-2"><i class="fa fa-print"></i></a>
+                                                        <a href="transaksi-keluar-tbs?hal=hapus&id=<?= $data['id'] ?>" class="btn btn-outline-danger ml-2 bhapus<?= $data['id']; ?>"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <script>
+                                                    $('.bhapus<?= $data['id']; ?>').on('click', function(e) {
+                                                        e.preventDefault();
+                                                        const href = $(this).attr('href');
+                                                        Swal.fire({
+                                                            title: 'Perhatian !',
+                                                            text: "Yanin ingin menghapus buah keluar dengan tujuan pabrik <?= $data['pabrik_tujuan'] ?> dengan berat <?= rp($data['tbg_buah']); ?> Kg?",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#d33',
+                                                            cancelButtonColor: '#3085d6',
+                                                            confirmButtonText: 'Hapus',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.location.href = href;
+                                                            }
+                                                        })
                                                     })
-                                                })
-                                            </script>
-                                        <?php endwhile; ?>
+                                                </script>
+                                            <?php endwhile; ?>
 
-                                    </tbody>
-                                </table>
-
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

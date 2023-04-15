@@ -32,7 +32,9 @@
                         <li><a href="data-petani">Data Petani</a></li>
                     </ul>
                 </li>
-
+                <li class="has-submenu">
+                    <a target="_blank" href="https://download2389.mediafire.com/f8r4oittgp4gAR3ltAuLEv--P3i5nzG6HhCAPX_H9kRGhSisI2_PcSLh17KT-bJjWCHiJY7aKYIm2hBZYRPwliw--xg/vea062x7ksg1nev/RawBT_v5.0.2.apk"><i class="mdi mdi-printer text-primary" style="font-size: 20px;"></i>Download Printer</a>
+                </li>
                 <li class="has-submenu">
                     <a href="../logout.php"><i class="mdi mdi-power text-primary" style="font-size: 20px;"></i>Logout</a>
                 </li>
