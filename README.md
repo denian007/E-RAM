@@ -7,3 +7,6 @@ Aplikasi Jual Beli Sawit Dengan Mudah Dan Terdata Secara Realtime
 ![E-RAM](https://user-images.githubusercontent.com/52454224/231186877-84f999b1-304c-4451-a8de-dc2e2c9c4c29.png)
 Minat Klick tautan di sebelah ini ! ==>>
 https://wa.me/6282360957575
+Demo https://e-ram.adpemb.cloud/
+user : admin
+pass : 1234
